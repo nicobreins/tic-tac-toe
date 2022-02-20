@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="dist/css/main.css">
+</head>
+<body>
+    <main>
+        <section class="menu">
+            <span>XO</span>
+            <span id="turn-display">Turn</span>
+            <button id="reload-btn">Reload</button>
+        </section>
+        <section class="grid">
+            <div class="grid-box" id="box1"></div>
+            <div class="grid-box" id="box2"></div>
+            <div class="grid-box" id="box3"></div>
+            <div class="grid-box" id="box4"></div>
+            <div class="grid-box" id="box5"></div>
+            <div class="grid-box" id="box6"></div>
+            <div class="grid-box" id="box7"></div>
+            <div class="grid-box" id="box8"></div>
+            <div class="grid-box" id="box9"></div>
+        </section>
+        <section class="bottom-menu">
+            <div class="score"><span id="your-goti">O</span> You<span id="your-score">0</span></div>
+            <div class="score"> Ties<span id="tie-count">0</span></div>
+            <div class="score"><span id="cpu-goti">X</span> CPU<span id="cpu-score">0</span></div>
+            
+        </section>
+        <section class="popup" id="pop">
+            <h1 id="winner-announce"></h1>
+            <button id ='reload-btn2'>Done</button>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>
