@@ -6,6 +6,17 @@ let yourScore = 0;
 let cpuScore = 0;
 let tieCount = 0;
 
+if(localStorage.getItem('oWinCount') !== null){
+    document.getElementById('your-score').innerText =localStorage.getItem('oWinCount')
+}
+
+if(localStorage.getItem('xWinCount') !== null){
+    document.getElementById('cpu-score').innerText =localStorage.getItem('xWinCount')
+}
+
+if(localStorage.getItem('tieCount') !== null){
+    document.getElementById('tie-count').innerText =localStorage.getItem('tieCount')
+}
 
 
 
@@ -92,9 +103,11 @@ for(let i = boxEl.length -1; i >= 0; i--){
             winnerCount(2);        
         }else if(challCount == 5){
             tieCount++;
-            document.getElementById('tie-count').innerText = yourScore;
+            document.getElementById('tie-count').innerText = tieCount;
             document.getElementById('winner-announce').innerText = `Tie`;
             document.getElementById('pop').classList.add('active');
+            localStorage.setItem('tieCount',tieCount)
+            
             
         }
         
@@ -110,8 +123,10 @@ const winnerCount = (boxnum)=>{
     if(boxEl[boxnum].innerText == 'O'){
         yourScore++;
         document.getElementById('your-score').innerText = yourScore;
+        localStorage.setItem('oWinCount',yourScore);
     }else if(boxEl[boxnum].innerText == 'X'){
         cpuScore++;
         document.getElementById('cpu-score').innerText = cpuScore;
+        localStorage.setItem('xWinCount',cpuScore)
     }
 }
