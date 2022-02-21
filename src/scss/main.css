@@ -1,0 +1,113 @@
+html {
+  --lg-green: #606c38;
+  --dk-green: #283618;
+  --cream: #fefae0;
+  --lg-brown: #dda15e;
+  --dk-brown: #bc6c25;
+  font-size: 20px;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--lg-green);
+  font-family: "Gochi Hand", cursive;
+  color: var(--cream);
+}
+
+button {
+  background-color: var(--lg-green);
+  border: none;
+  font-family: inherit;
+  font-size: 1.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: var(--cream);
+  box-shadow: 5px 5px 5px #212c14c7;
+  cursor: pointer;
+}
+button:active {
+  background-color: #4a532a;
+  box-shadow: none;
+  transform: translate(3px, 3px);
+}
+
+main {
+  width: 20rem;
+  padding: 2rem;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  box-shadow: 10px 10px 40px #212c1486;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--dk-green);
+}
+main .menu, main .bottom-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+main .menu h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+main .menu #turn-display {
+  font-size: 1.25rem;
+}
+main .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+main .grid.noclick {
+  pointer-events: none;
+}
+main .grid .grid-box {
+  height: 4rem;
+  background-color: var(--cream);
+  color: var(--dk-green);
+  font-size: 1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  font-size: 1.75rem;
+  cursor: pointer;
+}
+main .grid .grid-box:active {
+  background-color: var(--dk-brown);
+}
+main .bottom-menu .score {
+  flex-direction: column;
+  text-align: center;
+}
+main .bottom-menu .score span:last-child {
+  font-size: 2rem;
+  display: block;
+}
+main .popup {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--cream);
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 60vh;
+  font-size: 2rem;
+}
+main .popup.active {
+  display: flex;
+}/*# sourceMappingURL=main.css.map */
