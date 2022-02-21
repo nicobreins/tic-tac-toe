@@ -1,6 +1,7 @@
 const boxEl = document.getElementsByClassName('grid-box');
 const reloadEl = document.getElementById('reload-btn');
 const reloadEl2 = document.getElementById('reload-btn2');
+const turnEl = document.getElementById('turn-display');
 let challCount = 0;
 let yourScore = 0;
 let cpuScore = 0;
@@ -25,6 +26,8 @@ function resetFun(){
         boxEl[i].innerText = '';
     }
     challCount = 0;
+    turnEl.innerHTML = "Turn - O";            
+
 }
 
 reloadEl.onclick = ()=>{
@@ -48,73 +51,83 @@ for(let i = boxEl.length -1; i >= 0; i--){
 
             challCount++;
             console.log(challCount)
-            
-            if(challCount !== 5){
-                if(boxEl[0].innerText == boxEl[2].innerText && boxEl[1].innerText == '' && boxEl[0].innerText !== ''){
-                    boxEl[1].innerText = 'X';
-                }else if(boxEl[3].innerText == boxEl[5].innerText && boxEl[4].innerText == '' && boxEl[3].innerText !== ''){
-                    boxEl[4].innerText = 'X';
-                }else if(boxEl[6].innerText == boxEl[8].innerText && boxEl[7].innerText == '' && boxEl[6].innerText !== ''){
-                    boxEl[7].innerText = 'X';
-                }else if(boxEl[0].innerText == boxEl[6].innerText && boxEl[3].innerText == '' && boxEl[0].innerText !== ''){
-                    boxEl[3].innerText = 'X';
-                }else if(boxEl[1].innerText == boxEl[7].innerText && boxEl[4].innerText == '' && boxEl[1].innerText !== ''){
-                    boxEl[4].innerText = 'X';
-                }else if(boxEl[2].innerText == boxEl[8].innerText && boxEl[5].innerText == '' && boxEl[2].innerText !== ''){
-                    boxEl[5].innerText = 'X';
-                }else if(boxEl[0].innerText == boxEl[8].innerText && boxEl[4].innerText == '' && boxEl[0].innerText !== ''){
-                    boxEl[4].innerText = 'X';
-                }else if(boxEl[2].innerText == boxEl[6].innerText && boxEl[4].innerText == '' && boxEl[2].innerText !== ''){
-                    boxEl[4].innerText = 'X';
-                }else if(boxEl[0].innerText == boxEl[1].innerText && boxEl[2].innerText == '' && boxEl[0].innerText !== ''){
-                    boxEl[2].innerText = 'X';
-                }else if(boxEl[3].innerText == boxEl[4].innerText && boxEl[5].innerText == '' && boxEl[3].innerText !== ''){
-                    boxEl[5].innerText = 'X';
-                }else if(boxEl[6].innerText == boxEl[7].innerText && boxEl[8].innerText == '' && boxEl[6].innerText !== ''){
-                    boxEl[8].innerText = 'X';
-                }else if(boxEl[0].innerText == boxEl[3].innerText && boxEl[6].innerText == '' && boxEl[0].innerText !== ''){
-                    boxEl[6].innerText = 'X';
-                }else if(boxEl[1].innerText == boxEl[4].innerText && boxEl[7].innerText == '' && boxEl[1].innerText !== ''){
-                    boxEl[7].innerText = 'X';
-                }else if(boxEl[2].innerText == boxEl[5].innerText && boxEl[8].innerText == '' && boxEl[2].innerText !== ''){
-                    boxEl[8].innerText = 'X';
-                }else if(boxEl[0].innerText == boxEl[4].innerText && boxEl[8].innerText == '' && boxEl[0].innerText !== ''){
-                    boxEl[8].innerText = 'X';
-                }else if(boxEl[2].innerText == boxEl[4].innerText && boxEl[6].innerText == '' && boxEl[2].innerText !== ''){
-                    boxEl[6].innerText = 'X';
-                }else if(boxEl[2].innerText == boxEl[1].innerText && boxEl[0].innerText == '' && boxEl[2].innerText !== ''){
-                    boxEl[0].innerText = 'X';
-                }else if(boxEl[5].innerText == boxEl[4].innerText && boxEl[3].innerText == '' && boxEl[5].innerText !== ''){
-                    boxEl[3].innerText = 'X';
-                }else if(boxEl[8].innerText == boxEl[7].innerText && boxEl[6].innerText == '' && boxEl[8].innerText !== ''){
-                    boxEl[6].innerText = 'X';
-                }else if(boxEl[6].innerText == boxEl[3].innerText && boxEl[0].innerText == '' && boxEl[6].innerText !== ''){
-                    boxEl[0].innerText = 'X';
-                }else if(boxEl[7].innerText == boxEl[4].innerText && boxEl[1].innerText == '' && boxEl[7].innerText !== ''){
-                    boxEl[1].innerText = 'X';
-                }else if(boxEl[8].innerText == boxEl[5].innerText && boxEl[2].innerText == '' && boxEl[8].innerText !== ''){
-                    boxEl[2].innerText = 'X';
-                }else if(boxEl[8].innerText == boxEl[4].innerText && boxEl[0].innerText == '' && boxEl[8].innerText !== ''){
-                    boxEl[0].innerText = 'X';
-                }else if(boxEl[6].innerText == boxEl[4].innerText && boxEl[2].innerText == '' && boxEl[6].innerText !== ''){
-                    boxEl[2].innerText = 'X';
-                }else{
-                    let cpuInputVal = Math.floor((Math.random() * 10) % 9);
-                    if(boxEl[cpuInputVal].innerText == ''){
-                        boxEl[cpuInputVal].innerText = 'X'
+
+            turnEl.innerHTML = "Turn - X";
+            document.getElementById('grid-sel').classList.add('noclick');
+
+            setTimeout(() => {
+                if(challCount !== 5){                    
+                    if(boxEl[0].innerText == boxEl[2].innerText && boxEl[1].innerText == '' && boxEl[0].innerText !== ''){
+                        boxEl[1].innerText = 'X';
+                    }else if(boxEl[3].innerText == boxEl[5].innerText && boxEl[4].innerText == '' && boxEl[3].innerText !== ''){
+                        boxEl[4].innerText = 'X';
+                    }else if(boxEl[6].innerText == boxEl[8].innerText && boxEl[7].innerText == '' && boxEl[6].innerText !== ''){
+                        boxEl[7].innerText = 'X';
+                    }else if(boxEl[0].innerText == boxEl[6].innerText && boxEl[3].innerText == '' && boxEl[0].innerText !== ''){
+                        boxEl[3].innerText = 'X';
+                    }else if(boxEl[1].innerText == boxEl[7].innerText && boxEl[4].innerText == '' && boxEl[1].innerText !== ''){
+                        boxEl[4].innerText = 'X';
+                    }else if(boxEl[2].innerText == boxEl[8].innerText && boxEl[5].innerText == '' && boxEl[2].innerText !== ''){
+                        boxEl[5].innerText = 'X';
+                    }else if(boxEl[0].innerText == boxEl[8].innerText && boxEl[4].innerText == '' && boxEl[0].innerText !== ''){
+                        boxEl[4].innerText = 'X';
+                    }else if(boxEl[2].innerText == boxEl[6].innerText && boxEl[4].innerText == '' && boxEl[2].innerText !== ''){
+                        boxEl[4].innerText = 'X';
+                    }else if(boxEl[0].innerText == boxEl[1].innerText && boxEl[2].innerText == '' && boxEl[0].innerText !== ''){
+                        boxEl[2].innerText = 'X';
+                    }else if(boxEl[3].innerText == boxEl[4].innerText && boxEl[5].innerText == '' && boxEl[3].innerText !== ''){
+                        boxEl[5].innerText = 'X';
+                    }else if(boxEl[6].innerText == boxEl[7].innerText && boxEl[8].innerText == '' && boxEl[6].innerText !== ''){
+                        boxEl[8].innerText = 'X';
+                    }else if(boxEl[0].innerText == boxEl[3].innerText && boxEl[6].innerText == '' && boxEl[0].innerText !== ''){
+                        boxEl[6].innerText = 'X';
+                    }else if(boxEl[1].innerText == boxEl[4].innerText && boxEl[7].innerText == '' && boxEl[1].innerText !== ''){
+                        boxEl[7].innerText = 'X';
+                    }else if(boxEl[2].innerText == boxEl[5].innerText && boxEl[8].innerText == '' && boxEl[2].innerText !== ''){
+                        boxEl[8].innerText = 'X';
+                    }else if(boxEl[0].innerText == boxEl[4].innerText && boxEl[8].innerText == '' && boxEl[0].innerText !== ''){
+                        boxEl[8].innerText = 'X';
+                    }else if(boxEl[2].innerText == boxEl[4].innerText && boxEl[6].innerText == '' && boxEl[2].innerText !== ''){
+                        boxEl[6].innerText = 'X';
+                    }else if(boxEl[2].innerText == boxEl[1].innerText && boxEl[0].innerText == '' && boxEl[2].innerText !== ''){
+                        boxEl[0].innerText = 'X';
+                    }else if(boxEl[5].innerText == boxEl[4].innerText && boxEl[3].innerText == '' && boxEl[5].innerText !== ''){
+                        boxEl[3].innerText = 'X';
+                    }else if(boxEl[8].innerText == boxEl[7].innerText && boxEl[6].innerText == '' && boxEl[8].innerText !== ''){
+                        boxEl[6].innerText = 'X';
+                    }else if(boxEl[6].innerText == boxEl[3].innerText && boxEl[0].innerText == '' && boxEl[6].innerText !== ''){
+                        boxEl[0].innerText = 'X';
+                    }else if(boxEl[7].innerText == boxEl[4].innerText && boxEl[1].innerText == '' && boxEl[7].innerText !== ''){
+                        boxEl[1].innerText = 'X';
+                    }else if(boxEl[8].innerText == boxEl[5].innerText && boxEl[2].innerText == '' && boxEl[8].innerText !== ''){
+                        boxEl[2].innerText = 'X';
+                    }else if(boxEl[8].innerText == boxEl[4].innerText && boxEl[0].innerText == '' && boxEl[8].innerText !== ''){
+                        boxEl[0].innerText = 'X';
+                    }else if(boxEl[6].innerText == boxEl[4].innerText && boxEl[2].innerText == '' && boxEl[6].innerText !== ''){
+                        boxEl[2].innerText = 'X';
                     }else{
-                        while (boxEl[cpuInputVal].innerText !== '') {
-                            cpuInputVal = Math.floor((Math.random() * 10) % 9);
-        
-                            if(boxEl[cpuInputVal].innerText == ''){
-                                boxEl[cpuInputVal].innerText = 'X';
-                                break;
-                            }
-                        }                
+                        let cpuInputVal = Math.floor((Math.random() * 10) % 9);
+                        if(boxEl[cpuInputVal].innerText == ''){
+                            boxEl[cpuInputVal].innerText = 'X'
+                        }else{
+                            while (boxEl[cpuInputVal].innerText !== '') {
+                                cpuInputVal = Math.floor((Math.random() * 10) % 9);
+            
+                                if(boxEl[cpuInputVal].innerText == ''){
+                                    boxEl[cpuInputVal].innerText = 'X';
+                                    break;
+                                }
+                            }                
+                        }
                     }
-                }
-                
-            }
+                    
+                }   
+                turnEl.innerHTML = "Turn - O"; 
+                document.getElementById('grid-sel').classList.remove('noclick');
+                           
+            }, 500);
+            
+            
         }   
         
         if(boxEl[0].innerText == boxEl[1].innerText && boxEl[1].innerText == boxEl[2].innerText && boxEl[0].innerText !== ''){

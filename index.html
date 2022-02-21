@@ -5,16 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="dist/css/main.css">
+    <link rel="stylesheet" href="src/scss/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">    
 </head>
 <body>
     <main>
         <section class="menu">
-            <span>XO</span>
-            <span id="turn-display">Turn</span>
-            <button id="reload-btn">Reload</button>
+            <h1>XO</h1>
+            <span id="turn-display">Turn - O</span>
+            <button id="reload-btn">Clear</button>
         </section>
-        <section class="grid">
+        <section class="grid" id="grid-sel">
             <div class="grid-box" id="box1"></div>
             <div class="grid-box" id="box2"></div>
             <div class="grid-box" id="box3"></div>
@@ -26,9 +29,9 @@
             <div class="grid-box" id="box9"></div>
         </section>
         <section class="bottom-menu">
-            <div class="score"><span id="your-goti">O</span> You<span id="your-score">0</span></div>
+            <div class="score">You - <span id="your-goti">O</span><span id="your-score">0</span></div>
             <div class="score"> Ties<span id="tie-count">0</span></div>
-            <div class="score"><span id="cpu-goti">X</span> CPU<span id="cpu-score">0</span></div>
+            <div class="score">CPU - <span id="cpu-goti">X</span> <span id="cpu-score">0</span></div>
             
         </section>
         <section class="popup" id="pop">

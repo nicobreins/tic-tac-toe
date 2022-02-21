@@ -1,55 +1,119 @@
+html{
+    --lg-green: #606c38;
+    --dk-green: #283618;
+
+    --cream: #fefae0;
+
+    --lg-brown: #dda15e;
+    --dk-brown: #bc6c25;
+
+    font-size: 20px;
+}
+
 body{
     margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-color: var(--lg-green);
+    font-family: 'Gochi Hand', cursive;
+    color: var(--cream);
+}
+
+button{
+    background-color: var(--lg-green);
+    border: none;
+    font-family: inherit;
+    font-size: 1.25rem;
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    color: var(--cream);
+    box-shadow: 5px 5px 5px #212c14c7;
+    cursor: pointer;
+
+    &:active{
+        background-color: #4a532a;
+        box-shadow: none;
+        transform: translate(3px,3px);
+    }
 }
 
 main{
     width: 20rem;
     padding: 2rem;
-    border: 2px solid black;
     box-sizing: border-box;
+    border-radius: 1rem;
+    box-shadow:10px 10px 40px #212c1486;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    background-color: var(--dk-green);
 
     .menu, .bottom-menu{
         display: flex;
         justify-content: space-between;
+        align-items: center;
         
     }
+
+    .menu{
+
+        h1{
+            margin: 0;
+            font-size: 2.5rem;
+        }        
+
+        #turn-display{
+            font-size: 1.25rem;
+        }
+    }
+
 
     .grid{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 1rem;
 
+        &.noclick{
+            pointer-events:none;
+        }
+
         .grid-box{
             height: 4rem;
-            width: 4rem;
-            background-color: grey;
-            color: #000;
+            // width: 4rem;
+            background-color: var(--cream);
+            color: var(--dk-green);
             font-size: 1rem;
             font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: .75rem;
+            font-size: 1.75rem;
+            cursor: pointer;
             
+            &:active{
+                background-color: var(--dk-brown);
+            }
         }
     }
 
     .bottom-menu{
         .score{
-            display: flex;
+            // display: flex;
             flex-direction: column;
             text-align: center;
+
+            & span:last-child{
+                font-size: 2rem;
+                display: block;
+            }
         }
     }
 
     .popup{
-        background-color: rgba($color: #000000, $alpha: .6);
+        background-color: rgba($color: #000000, $alpha: .8);
         position: absolute;
         left: 0;
         right: 0;
@@ -57,23 +121,23 @@ main{
         align-items: center;
         justify-content: center;
         text-align: center;
-        color: aliceblue;
+        color: var(--cream);
         flex-direction: column;
         gap: 1rem;
         padding: 2rem;
         top: 50%;
         transform: translateY(-50%);
-        height: 50vh;
-        
+        height: 60vh;
+        font-size: 2rem;
 
         &.active{
             display: flex;
         }
 
         button{
-            width: 8rem;
-            height: 3rem;
-            font-size: 1.5rem;
+            // width: 8rem;
+            // height: 3rem;
+            // font-size: 1.5rem;
         }
     }
 
