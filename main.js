@@ -6,6 +6,7 @@ let challCount = 0;
 let yourScore = 0;
 let cpuScore = 0;
 let tieCount = 0;
+let winnerAnnounced = false;
 
 if(localStorage.getItem('oWinCount') !== null){
     document.getElementById('your-score').innerText =localStorage.getItem('oWinCount')
@@ -29,6 +30,7 @@ function resetFun(){
     challCount = 0;
     turnEl.innerHTML = "Turn - O";   
     document.getElementById('grid-sel').classList.remove('noclick');
+    winnerAnnounced = false;
 
 }
 
@@ -59,7 +61,7 @@ for(let i = boxEl.length -1; i >= 0; i--){
             document.getElementById('grid-sel').classList.add('noclick');
 
             setTimeout(() => {
-                if(challCount !== 5){
+                if(challCount !== 5 && !winnerAnnounced){
                     document.getElementById('youclick-fx').play();
                                         
                     if(boxEl[0].innerText == boxEl[2].innerText && boxEl[1].innerText == '' && boxEl[0].innerText !== ''){
@@ -165,7 +167,9 @@ const winnerAnn = ()=>{
         document.getElementById('tie-count').innerText = tieCount;
         document.getElementById('winner-announce').innerText = `Tie`;
         document.getElementById('pop').classList.add('active');
-        document.getElementById('tie-fx').play();        
+        setTimeout(() => {
+            document.getElementById('tie-fx').play();                    
+        }, 200);
         localStorage.setItem('tieCount',tieCount);
     }    
 }
@@ -177,6 +181,7 @@ const winnerCount = (box1,box2,box3)=>{
     boxEl[box3].classList.add('active');
     document.getElementById('win-fx').play();
     document.getElementById('grid-sel').classList.add('noclick');
+    winnerAnnounced = true;
 
     setTimeout(() => {
         document.getElementById('winner-announce').innerText = `${boxEl[box1].innerText} Win`;
