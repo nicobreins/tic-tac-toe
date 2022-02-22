@@ -82,6 +82,9 @@ main .grid .grid-box {
 main .grid .grid-box:active {
   background-color: var(--dk-brown);
 }
+main .grid .grid-box.active {
+  background-color: var(--lg-brown);
+}
 main .bottom-menu .score {
   flex-direction: column;
   text-align: center;

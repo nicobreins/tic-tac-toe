@@ -24,9 +24,11 @@ if(localStorage.getItem('tieCount') !== null){
 function resetFun(){
     for(let i = boxEl.length -1; i >= 0; i--){
         boxEl[i].innerText = '';
+        boxEl[i].classList.remove('active')
     }
     challCount = 0;
-    turnEl.innerHTML = "Turn - O";            
+    turnEl.innerHTML = "Turn - O";   
+    document.getElementById('grid-sel').classList.remove('noclick');
 
 }
 
@@ -48,6 +50,7 @@ for(let i = boxEl.length -1; i >= 0; i--){
 
         if(boxEl[i].innerText == ''){
             boxEl[i].innerText = 'O';
+            document.getElementById('cpuclick-fx').play();
 
             challCount++;
             console.log(challCount)
@@ -56,7 +59,9 @@ for(let i = boxEl.length -1; i >= 0; i--){
             document.getElementById('grid-sel').classList.add('noclick');
 
             setTimeout(() => {
-                if(challCount !== 5){                    
+                if(challCount !== 5){
+                    document.getElementById('youclick-fx').play();
+                                        
                     if(boxEl[0].innerText == boxEl[2].innerText && boxEl[1].innerText == '' && boxEl[0].innerText !== ''){
                         boxEl[1].innerText = 'X';
                     }else if(boxEl[3].innerText == boxEl[5].innerText && boxEl[4].innerText == '' && boxEl[3].innerText !== ''){
@@ -124,54 +129,69 @@ for(let i = boxEl.length -1; i >= 0; i--){
                 }   
                 turnEl.innerHTML = "Turn - O"; 
                 document.getElementById('grid-sel').classList.remove('noclick');
+                winnerAnn();
                            
             }, 500);
+
+            winnerAnn();
             
             
         }   
         
-        if(boxEl[0].innerText == boxEl[1].innerText && boxEl[1].innerText == boxEl[2].innerText && boxEl[0].innerText !== ''){
-            winnerCount(0);
-        }else if(boxEl[3].innerText == boxEl[4].innerText && boxEl[4].innerText == boxEl[5].innerText && boxEl[3].innerText !== ''){
-            winnerCount(3);        
-        }else if(boxEl[6].innerText == boxEl[7].innerText && boxEl[7].innerText == boxEl[8].innerText && boxEl[6].innerText !== ''){
-            winnerCount(6);        
-        }else if(boxEl[0].innerText == boxEl[3].innerText && boxEl[3].innerText == boxEl[6].innerText && boxEl[0].innerText !== ''){
-            winnerCount(0);        
-        }else if(boxEl[1].innerText == boxEl[4].innerText && boxEl[4].innerText == boxEl[7].innerText && boxEl[1].innerText !== ''){
-            winnerCount(1);        
-        }else if(boxEl[2].innerText == boxEl[5].innerText && boxEl[5].innerText == boxEl[8].innerText && boxEl[2].innerText !== ''){
-            winnerCount(2);        
-        }else if(boxEl[0].innerText == boxEl[4].innerText && boxEl[4].innerText == boxEl[8].innerText && boxEl[0].innerText !== ''){
-            winnerCount(0);        
-        }else if(boxEl[2].innerText == boxEl[4].innerText && boxEl[4].innerText == boxEl[6].innerText && boxEl[2].innerText !== ''){
-            winnerCount(2);        
-        }else if(challCount == 5){
-            tieCount++;
-            document.getElementById('tie-count').innerText = tieCount;
-            document.getElementById('winner-announce').innerText = `Tie`;
-            document.getElementById('pop').classList.add('active');
-            localStorage.setItem('tieCount',tieCount)
-            
-            
-        }
         
     }            
     
 }
 
-const winnerCount = (boxnum)=>{
-    // alert(boxEl[boxnum].innerText + " win");
-    document.getElementById('winner-announce').innerText = `${boxEl[boxnum].innerText} Win`;
-    document.getElementById('pop').classList.add('active');
+const winnerAnn = ()=>{
+    if(boxEl[0].innerText == boxEl[1].innerText && boxEl[1].innerText == boxEl[2].innerText && boxEl[0].innerText !== ''){
+        winnerCount(0,1,2);
+    }else if(boxEl[3].innerText == boxEl[4].innerText && boxEl[4].innerText == boxEl[5].innerText && boxEl[3].innerText !== ''){
+        winnerCount(3,4,5);        
+    }else if(boxEl[6].innerText == boxEl[7].innerText && boxEl[7].innerText == boxEl[8].innerText && boxEl[6].innerText !== ''){
+        winnerCount(6,7,8);        
+    }else if(boxEl[0].innerText == boxEl[3].innerText && boxEl[3].innerText == boxEl[6].innerText && boxEl[0].innerText !== ''){
+        winnerCount(0,3,6);        
+    }else if(boxEl[1].innerText == boxEl[4].innerText && boxEl[4].innerText == boxEl[7].innerText && boxEl[1].innerText !== ''){
+        winnerCount(1,4,7);        
+    }else if(boxEl[2].innerText == boxEl[5].innerText && boxEl[5].innerText == boxEl[8].innerText && boxEl[2].innerText !== ''){
+        winnerCount(2,5,8);        
+    }else if(boxEl[0].innerText == boxEl[4].innerText && boxEl[4].innerText == boxEl[8].innerText && boxEl[0].innerText !== ''){
+        winnerCount(0,4,8);        
+    }else if(boxEl[2].innerText == boxEl[4].innerText && boxEl[4].innerText == boxEl[6].innerText && boxEl[2].innerText !== ''){
+        winnerCount(2,4,6);        
+    }else if(challCount == 5){
+        tieCount++;
+        document.getElementById('tie-count').innerText = tieCount;
+        document.getElementById('winner-announce').innerText = `Tie`;
+        document.getElementById('pop').classList.add('active');
+        document.getElementById('tie-fx').play();        
+        localStorage.setItem('tieCount',tieCount);
+    }    
+}
+
+const winnerCount = (box1,box2,box3)=>{
+    // alert(boxEl[box1].innerText + " win");
+    boxEl[box1].classList.add('active');
+    boxEl[box2].classList.add('active');
+    boxEl[box3].classList.add('active');
+    document.getElementById('win-fx').play();
+    document.getElementById('grid-sel').classList.add('noclick');
+
+    setTimeout(() => {
+        document.getElementById('winner-announce').innerText = `${boxEl[box1].innerText} Win`;
+        document.getElementById('pop').classList.add('active');
+        
+        if(boxEl[box1].innerText == 'O'){
+            yourScore++;
+            document.getElementById('your-score').innerText = yourScore;
+            localStorage.setItem('oWinCount',yourScore);
+        }else if(boxEl[box1].innerText == 'X'){
+            cpuScore++;
+            document.getElementById('cpu-score').innerText = cpuScore;
+            localStorage.setItem('xWinCount',cpuScore)
+        }        
+    }, 1100);
+
     
-    if(boxEl[boxnum].innerText == 'O'){
-        yourScore++;
-        document.getElementById('your-score').innerText = yourScore;
-        localStorage.setItem('oWinCount',yourScore);
-    }else if(boxEl[boxnum].innerText == 'X'){
-        cpuScore++;
-        document.getElementById('cpu-score').innerText = cpuScore;
-        localStorage.setItem('xWinCount',cpuScore)
-    }
 }

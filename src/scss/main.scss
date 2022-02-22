@@ -96,6 +96,10 @@ main{
             &:active{
                 background-color: var(--dk-brown);
             }
+
+            &.active{
+                background-color: var(--lg-brown);
+            }
         }
     }
 
